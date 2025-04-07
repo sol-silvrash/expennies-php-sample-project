@@ -1,0 +1,66 @@
+services:
+  app:
+    build:
+      context: "./"
+      dockerfile: dockerfile
+      args:
+        USER_ID: "${WWWUSER:-1000}"
+        GROUP_ID: "${WWWGROUP:-1000}"
+        USER: "${USER:-solsilvrash}"
+    container_name: expennies-app
+    restart: always
+    working_dir: /var/www/
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "9003:9003"
+    volumes:
+      - ../:/var/www
+      - ./conf/local/local.ini:/usr/local/etc/php/conf.d/local.ini
+
+  nginx:
+    image: nginx:latest
+    container_name: expennies-nginx
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ../:/var/www
+      - ./conf/nginx:/etc/nginx/conf.d
+
+  db:
+    image: mysql:latest
+    container_name: expennies-db
+    restart: always
+    command: --lower_case_table_names=2
+    ports:
+      - 3306:3306
+    volumes:
+      - ./storage/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: expennies-phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: expennies-mailhog
+    restart: always
+    logging:
+      driver: "none"
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+  redis:
+    image: redis:latest
+    container_name: expennies-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass retyopre12

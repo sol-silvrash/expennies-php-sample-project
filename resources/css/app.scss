@@ -1,0 +1,39 @@
+@use "./variables.scss";
+@use "~bootstrap/scss/bootstrap";
+@use "~bootstrap-icons/font/bootstrap-icons";
+@use "~datatables.net-bs5/css/dataTables.bootstrap5";
+@use "~font-awesome/css/font-awesome";
+
+* {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+body {
+    background-color: #e7ebee;
+}
+
+svg.icon {
+    width: 30px;
+    height: 30px;
+}
+
+.nav-link {
+    color: #9aa0a9;
+
+    &.active {
+        background-color: inherit !important;
+        color: #57585A !important;
+    }
+
+    &:hover,
+    &:focus {
+        color: #57585A !important;
+    }
+}
+
+.content-body {
+    background-color: #FEFEFE;
+    min-height: 500px;
+    border-radius: 1rem;
+    padding: 20px 25px 25px;
+}

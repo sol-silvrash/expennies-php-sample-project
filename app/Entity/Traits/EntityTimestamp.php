@@ -1,0 +1,27 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Entity\Traits;
+
+use DateTime;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
+trait EntityTimestamp
+{
+    #[Column(name: 'created_at')]
+    private DateTime $createdAt;
+
+    #[Column(name: 'updated_at')]
+    private DateTime $updatedAt;
+
+    #[PrePersist, PreUpdate]
+    public function updateTimestamps(LifecycleEventArgs $args)
+    {
+        if (!isset($this->createdAt))
+            $this->createdAt = new DateTime();
+
+        $this->updatedAt = new DateTime();
+    }
+}

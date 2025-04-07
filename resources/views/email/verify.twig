@@ -1,0 +1,26 @@
+{% extends 'home/layout.twig' %}
+
+{% block title %}Verify Email{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags("verify") }}
+{% endblock %}
+
+{% block content %}
+<div class="container content-body">
+    <div class="alert alert-warning" role="alert">
+        <div class="container-fluid">
+            <span>
+                Please check your email to verify & activate your account
+            </span>
+            <span>
+                <a class="float-end small resend-verification-email" href="#">
+                    Resend verification email
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

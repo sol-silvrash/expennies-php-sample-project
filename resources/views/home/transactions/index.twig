@@ -1,0 +1,43 @@
+{% extends "home/layout.twig" %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('transactions') }}
+{% endblock %}
+
+{% block title %}Transaction
+{% endblock %}
+
+{% block content %}
+<div class="transactions container content-body">
+    {% include "home/transactions/transaction.modal.twig" %}
+    {% include "home/transactions/transaction.csv.modal.twig" %}
+    {% include "home/transactions/transaction.receipt.modal.twig" %}
+    <div class="text-end">
+        <button type="button" class="btn btn-secondary import-transaction-csv-btn me-3" data-bs-toggle="modal"
+            data-bs-target="#transaction-csv-modal">
+            <i class="bi bi-file-earmark-arrow-up me-1"></i>
+            Import Transaction (.csv)
+        </button>
+        <button type="button" class="btn btn-primary create-transaction-btn" data-bs-toggle="modal"
+            data-bs-target="#transaction-modal">
+            <i class="bi bi-plus-circle me-1"></i>
+            New Transaction
+        </button>
+    </div>
+    <div class="mt-5">
+        <table id="transaction-table" class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Receipt</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+{% endblock %}

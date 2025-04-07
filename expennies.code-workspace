@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"a-file-icon-vscode.activeIconPacks": [
+			"angular",
+			"angular2",
+			"ngrx",
+			"nest",
+			"next",
+			"react",
+			"redux",
+			"recoil",
+			"vue",
+			"vuex",
+			"rails",
+			"phalcon",
+			"volt"
+		]
+	}
+}
